@@ -1,0 +1,4 @@
+{
+  "code": "export default class CustomMaterial1 extends Laya.Material {\r\n    constructor() {\r\n        super();\r\n        this.setShaderName(\"CustomShader1\");\r\n    }\r\n}\r\n",
+  "references": []
+}
