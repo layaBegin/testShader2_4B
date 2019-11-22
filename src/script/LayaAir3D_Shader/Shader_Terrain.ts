@@ -1,6 +1,6 @@
 import CameraMoveScript from "./common/CameraMoveScript"
 import CustomTerrainMaterial from "./customMaterials/CustomTerrainMaterial"
-class Shader_Terrain {
+export default class  Shader_Terrain {
     constructor() {
         Laya3D.init(0, 0);
         Laya.stage.scaleMode = Laya.Stage.SCALE_FULL;
@@ -141,7 +141,7 @@ class Shader_Terrain {
         #endif
         }`;
 		var customTerrianShader:Laya.Shader3D = Laya.Shader3D.add("CustomTerrainShader");
-		var subShader:Laya.SubShader =new Laya.SubShader(attributeMap, uniformMap, Laya.RenderableSprite3D.shaderDefines, CustomTerrainMaterial.shaderDefines);
+		var subShader:Laya.SubShader =new Laya.SubShader(attributeMap, uniformMap);
 		customTerrianShader.addSubShader(subShader);
 		subShader.addShaderPass(vs, ps);
     }

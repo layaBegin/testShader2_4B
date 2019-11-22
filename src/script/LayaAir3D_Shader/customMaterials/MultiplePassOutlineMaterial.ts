@@ -7,7 +7,7 @@ export default class  MultiplePassOutlineMaterial extends Laya.Material {
 		public static OUTLINECOLOR = Laya.Shader3D.propertyNameToID("u_OutlineColor");
 		
 		/**@private */
-		public static shaderDefines:Laya.ShaderDefines = new Laya.ShaderDefines(Laya.BaseMaterial.shaderDefines);
+		// public static shaderDefines:Laya.ShaderDefines = new Laya.ShaderDefines(Laya.BaseMaterial.shaderDefines);
 		
 		/**
 		 * @private

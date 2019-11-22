@@ -94,181 +94,264 @@
         }
     }
 
-    class CustomMaterial extends Laya.Material {
+    class CustomTerrainMaterial extends Laya.Material {
         constructor() {
             super();
-            this.setShaderName("CustomShader");
+            this.setShaderName("CustomTerrainShader");
         }
-        get diffuseTexture() {
-            return this._shaderValues.getTexture(CustomMaterial.DIFFUSETEXTURE);
+        static __init__() {
+            CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1 = Laya.Shader3D.getDefineByName("CUSTOM_DETAIL_NUM1");
+            CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2 = Laya.Shader3D.getDefineByName("CUSTOM_DETAIL_NUM2");
+            CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3 = Laya.Shader3D.getDefineByName("CUSTOM_DETAIL_NUM3");
+            CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4 = Laya.Shader3D.getDefineByName("CUSTOM_DETAIL_NUM4");
+            CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5 = Laya.Shader3D.getDefineByName("CUSTOM_DETAIL_NUM5");
         }
-        set diffuseTexture(value) {
-            this._shaderValues.setTexture(CustomMaterial.DIFFUSETEXTURE, value);
+        get splatAlphaTexture() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.SPLATALPHATEXTURE);
         }
-        set marginalColor(value) {
-            this._shaderValues.setVector3(CustomMaterial.MARGINALCOLOR, value);
+        set splatAlphaTexture(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.SPLATALPHATEXTURE, value);
+        }
+        get diffuseTexture1() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.DIFFUSETEXTURE1);
+        }
+        set diffuseTexture1(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.DIFFUSETEXTURE1, value);
+            this._setDetailNum(1);
+        }
+        get diffuseTexture2() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.DIFFUSETEXTURE2);
+        }
+        set diffuseTexture2(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.DIFFUSETEXTURE2, value);
+            this._setDetailNum(2);
+        }
+        get diffuseTexture3() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.DIFFUSETEXTURE3);
+        }
+        set diffuseTexture3(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.DIFFUSETEXTURE3, value);
+            this._setDetailNum(3);
+        }
+        get diffuseTexture4() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.DIFFUSETEXTURE4);
+        }
+        set diffuseTexture4(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.DIFFUSETEXTURE4, value);
+            this._setDetailNum(4);
+        }
+        get diffuseTexture5() {
+            return this._shaderValues.getTexture(CustomTerrainMaterial.DIFFUSETEXTURE5);
+        }
+        set diffuseTexture5(value) {
+            this._shaderValues.setTexture(CustomTerrainMaterial.DIFFUSETEXTURE5, value);
+            this._setDetailNum(5);
+        }
+        setDiffuseScale1(scale1) {
+            this._shaderValues.setVector2(CustomTerrainMaterial.DIFFUSESCALE1, scale1);
+        }
+        setDiffuseScale2(scale2) {
+            this._shaderValues.setVector2(CustomTerrainMaterial.DIFFUSESCALE2, scale2);
+        }
+        setDiffuseScale3(scale3) {
+            this._shaderValues.setVector2(CustomTerrainMaterial.DIFFUSESCALE3, scale3);
+        }
+        setDiffuseScale4(scale4) {
+            this._shaderValues.setVector2(CustomTerrainMaterial.DIFFUSESCALE4, scale4);
+        }
+        setDiffuseScale5(scale5) {
+            this._shaderValues.setVector2(CustomTerrainMaterial.DIFFUSESCALE5, scale5);
+        }
+        _setDetailNum(value) {
+            switch (value) {
+                case 1:
+                    this._defineDatas.add(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5);
+                    break;
+                case 2:
+                    this._defineDatas.add(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5);
+                    break;
+                case 3:
+                    this._defineDatas.add(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5);
+                    break;
+                case 4:
+                    this._defineDatas.add(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5);
+                    break;
+                case 5:
+                    this._defineDatas.add(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM5);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM1);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM2);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM3);
+                    this._defineDatas.remove(CustomTerrainMaterial.SHADERDEFINE_DETAIL_NUM4);
+                    break;
+            }
         }
     }
-    CustomMaterial.DIFFUSETEXTURE = Laya.Shader3D.propertyNameToID("u_texture");
-    CustomMaterial.MARGINALCOLOR = Laya.Shader3D.propertyNameToID("u_marginalColor");
+    CustomTerrainMaterial.SPLATALPHATEXTURE = Laya.Shader3D.propertyNameToID("u_SplatAlphaTexture");
+    CustomTerrainMaterial.DIFFUSETEXTURE1 = Laya.Shader3D.propertyNameToID("u_DiffuseTexture1");
+    CustomTerrainMaterial.DIFFUSETEXTURE2 = Laya.Shader3D.propertyNameToID("u_DiffuseTexture2");
+    CustomTerrainMaterial.DIFFUSETEXTURE3 = Laya.Shader3D.propertyNameToID("u_DiffuseTexture3");
+    CustomTerrainMaterial.DIFFUSETEXTURE4 = Laya.Shader3D.propertyNameToID("u_DiffuseTexture4");
+    CustomTerrainMaterial.DIFFUSETEXTURE5 = Laya.Shader3D.propertyNameToID("u_DiffuseTexture5");
+    CustomTerrainMaterial.DIFFUSESCALE1 = Laya.Shader3D.propertyNameToID("u_DiffuseScale1");
+    CustomTerrainMaterial.DIFFUSESCALE2 = Laya.Shader3D.propertyNameToID("u_DiffuseScale2");
+    CustomTerrainMaterial.DIFFUSESCALE3 = Laya.Shader3D.propertyNameToID("u_DiffuseScale3");
+    CustomTerrainMaterial.DIFFUSESCALE4 = Laya.Shader3D.propertyNameToID("u_DiffuseScale4");
+    CustomTerrainMaterial.DIFFUSESCALE5 = Laya.Shader3D.propertyNameToID("u_DiffuseScale5");
 
-    class Shader_GlowingEdge {
+    class Shader_Terrain {
         constructor() {
-            this.rotation = new Laya.Vector3(0, 0.01, 0);
             Laya3D.init(0, 0);
             Laya.stage.scaleMode = Laya.Stage.SCALE_FULL;
             Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;
             Laya.Stat.show();
             this.initShader();
-            var scene = Laya.stage.addChild(new Laya.Scene3D());
-            var camera = (scene.addChild(new Laya.Camera(0, 0.1, 1000)));
-            camera.transform.translate(new Laya.Vector3(0, 0.85, 1.7));
-            camera.transform.rotate(new Laya.Vector3(-15, 0, 0), true, false);
+            var scene = Laya.stage.addChild(new Laya.Scene3D);
+            var camera = scene.addChild(new Laya.Camera(0, 0.1, 1000));
+            camera.transform.rotate(new Laya.Vector3(-18, 180, 0), false, false);
+            camera.transform.translate(new Laya.Vector3(-28, 20, -18), false);
             camera.addComponent(CameraMoveScript);
-            var directionLight = scene.addChild(new Laya.DirectionLight());
-            directionLight.color = new Laya.Vector3(1, 1, 1);
-            Laya.Sprite3D.load("res/threeDimen/skinModel/dude/dude.lh", Laya.Handler.create(this, function (dude) {
-                scene.addChild(dude);
-                var customMaterial1 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/head.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial1.diffuseTexture = tex;
+            Laya.Mesh.load("res/threeDimen/skinModel/Terrain/terrain_New-Part-01.lm", Laya.Handler.create(this, function (mesh) {
+                var terrain = scene.addChild(new Laya.MeshSprite3D(mesh));
+                var customMaterial = new CustomTerrainMaterial();
+                Laya.Texture2D.load("res/threeDimen/skinModel/Terrain/splatAlphaTexture.png", Laya.Handler.create(null, function (tex) {
+                    customMaterial.splatAlphaTexture = tex;
                 }));
-                customMaterial1.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial2 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/jacket.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial2.diffuseTexture = tex;
+                Laya.Texture2D.load("res/threeDimen/skinModel/Terrain/ground_01.jpg", Laya.Handler.create(null, function (tex) {
+                    customMaterial.diffuseTexture1 = tex;
                 }));
-                customMaterial2.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial3 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/pants.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial3.diffuseTexture = tex;
+                Laya.Texture2D.load("res/threeDimen/skinModel/Terrain/ground_02.jpg", Laya.Handler.create(null, function (tex) {
+                    customMaterial.diffuseTexture2 = tex;
                 }));
-                customMaterial3.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial4 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/upBodyC.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial4.diffuseTexture = tex;
+                Laya.Texture2D.load("res/threeDimen/skinModel/Terrain/ground_03.jpg", Laya.Handler.create(null, function (tex) {
+                    customMaterial.diffuseTexture3 = tex;
                 }));
-                customMaterial4.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var baseMaterials = new Array();
-                baseMaterials[0] = customMaterial1;
-                baseMaterials[1] = customMaterial2;
-                baseMaterials[2] = customMaterial3;
-                baseMaterials[3] = customMaterial4;
-                dude.getChildAt(0).getChildAt(0).skinnedMeshRenderer.sharedMaterials = baseMaterials;
-                dude.transform.position = new Laya.Vector3(0, 0.5, 0);
-                dude.transform.scale = new Laya.Vector3(0.2, 0.2, 0.2);
-                dude.transform.rotate(new Laya.Vector3(0, 180, 0), false, false);
+                Laya.Texture2D.load("res/threeDimen/skinModel/Terrain/ground_04.jpg", Laya.Handler.create(null, function (tex) {
+                    customMaterial.diffuseTexture4 = tex;
+                }));
+                customMaterial.setDiffuseScale1(new Laya.Vector2(27.92727, 27.92727));
+                customMaterial.setDiffuseScale2(new Laya.Vector2(13.96364, 13.96364));
+                customMaterial.setDiffuseScale3(new Laya.Vector2(18.61818, 18.61818));
+                customMaterial.setDiffuseScale4(new Laya.Vector2(13.96364, 13.96364));
+                terrain.meshRenderer.sharedMaterial = customMaterial;
             }));
-            var earth = scene.addChild(new Laya.MeshSprite3D(Laya.PrimitiveMesh.createSphere(0.5, 128, 128)));
-            var customMaterial = new CustomMaterial();
-            Laya.Texture2D.load("res/threeDimen/texture/earth.png", Laya.Handler.create(null, function (tex) {
-                customMaterial.diffuseTexture = tex;
-            }));
-            customMaterial.marginalColor = new Laya.Vector3(0.0, 0.3, 1.0);
-            earth.meshRenderer.sharedMaterial = customMaterial;
-            Laya.timer.frameLoop(1, this, function () {
-                earth.transform.rotate(this.rotation, true);
-            });
         }
         initShader() {
+            CustomTerrainMaterial.__init__();
             var attributeMap = {
                 'a_Position': Laya.VertexMesh.MESH_POSITION0,
                 'a_Normal': Laya.VertexMesh.MESH_NORMAL0,
-                'a_Texcoord': Laya.VertexMesh.MESH_TEXTURECOORDINATE0,
-                'a_BoneWeights': Laya.VertexMesh.MESH_BLENDWEIGHT0,
-                'a_BoneIndices': Laya.VertexMesh.MESH_BLENDINDICES0
+                'a_Texcoord0': Laya.VertexMesh.MESH_TEXTURECOORDINATE0
             };
             var uniformMap = {
-                'u_Bones': Laya.Shader3D.PERIOD_CUSTOM,
-                'u_CameraPos': Laya.Shader3D.PERIOD_CAMERA,
                 'u_MvpMatrix': Laya.Shader3D.PERIOD_SPRITE,
                 'u_WorldMat': Laya.Shader3D.PERIOD_SPRITE,
-                'u_texture': Laya.Shader3D.PERIOD_MATERIAL,
-                'u_marginalColor': Laya.Shader3D.PERIOD_MATERIAL,
-                'u_SunLight.color': Laya.Shader3D.PERIOD_SCENE,
+                'u_CameraPos': Laya.Shader3D.PERIOD_CAMERA,
+                'u_SplatAlphaTexture': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseTexture1': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseTexture2': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseTexture3': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseTexture4': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseTexture5': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseScale1': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseScale2': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseScale3': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseScale4': Laya.Shader3D.PERIOD_MATERIAL,
+                'u_DiffuseScale5': Laya.Shader3D.PERIOD_MATERIAL
             };
             var vs = `
         #include "Lighting.glsl";
         attribute vec4 a_Position;
-        attribute vec2 a_Texcoord;
+        attribute vec2 a_Texcoord0;
         attribute vec3 a_Normal;
         uniform mat4 u_MvpMatrix;
-        uniform mat4 u_WorldMat;
-        varying vec2 v_Texcoord;
-        varying vec3 v_Normal;
-        #ifdef BONE
-        attribute vec4 a_BoneIndices;
-        attribute vec4 a_BoneWeights;
-        const int c_MaxBoneCount = 24;
-        uniform mat4 u_Bones[c_MaxBoneCount];
-        #endif
-        #if defined(DIRECTIONLIGHT)
-        varying vec3 v_PositionWorld;
-        #endif
+        varying vec2 v_Texcoord0;
         void main()
         {
-            #ifdef BONE
-            mat4 skinTransform=mat4(0.0);
-            skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;
-            skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;
-            skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;
-            skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;
-            vec4 position = skinTransform * a_Position;
-            gl_Position=u_MvpMatrix * position;
-            mat3 worldMat=mat3(u_WorldMat * skinTransform);
-            #else
-            gl_Position=u_MvpMatrix * a_Position;
-            mat3 worldMat=mat3(u_WorldMat);
-            #endif
-            v_Texcoord=a_Texcoord;
-            v_Normal=worldMat*a_Normal;
-            #if defined(DIRECTIONLIGHT)
-            #ifdef BONE
-            v_PositionWorld=(u_WorldMat*position).xyz;
-            #else
-            v_PositionWorld=(u_WorldMat*a_Position).xyz;
-            #endif
-            #endif
-            gl_Position=remapGLPositionZ(gl_Position); 
-        }`;
+          gl_Position = u_MvpMatrix * a_Position;
+          v_Texcoord0 = a_Texcoord0;
+          gl_Position=remapGLPositionZ(gl_Position);
+       }`;
             var ps = `
         #ifdef FSHIGHPRECISION
-            precision highp float;
+        precision highp float;
         #else
-            precision mediump float;
+        precision mediump float;
         #endif
-        #include "Lighting.glsl";
-        varying vec2 v_Texcoord;
-        uniform sampler2D u_texture;
-        uniform vec3 u_marginalColor;
-        varying vec3 v_Normal;
-        #if defined(DIRECTIONLIGHT)
-            uniform vec3 u_CameraPos;
-            varying vec3 v_PositionWorld;
-            uniform DirectionLight u_SunLight;
-        #endif
+        uniform sampler2D u_SplatAlphaTexture;
+        uniform sampler2D u_DiffuseTexture1;
+        uniform sampler2D u_DiffuseTexture2;
+        uniform sampler2D u_DiffuseTexture3;
+        uniform sampler2D u_DiffuseTexture4;
+        uniform sampler2D u_DiffuseTexture5;
+        uniform vec2 u_DiffuseScale1;
+        uniform vec2 u_DiffuseScale2;
+        uniform vec2 u_DiffuseScale3;
+        uniform vec2 u_DiffuseScale4;
+        uniform vec2 u_DiffuseScale5;
+        varying vec2 v_Texcoord0;
         void main()
         {
-            gl_FragColor=texture2D(u_texture,v_Texcoord);
-            vec3 normal=normalize(v_Normal);
-            vec3 toEyeDir = normalize(u_CameraPos-v_PositionWorld);
-            float Rim = 1.0 - max(0.0,dot(toEyeDir, normal));
-            vec3 lightColor = u_SunLight.color;
-            vec3 Emissive = 2.0 * lightColor * u_marginalColor * pow(Rim,3.0);  
-            gl_FragColor = texture2D(u_texture, v_Texcoord) + vec4(Emissive,1.0);
-            
+        #ifdef CUSTOM_DETAIL_NUM1
+        vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);
+        vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScale1);
+        gl_FragColor.xyz = color1.xyz * splatAlpha.r;
+        #elif defined(CUSTOM_DETAIL_NUM2)
+        vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);
+        vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScale1);
+        vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScale2);
+        gl_FragColor.xyz = color1.xyz * splatAlpha.r + color2.xyz * (1.0 - splatAlpha.r);
+        #elif defined(USTOM_DETAIL_NUM3)
+        vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);
+        vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScale1);
+        vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScale2);
+        vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScale3);
+        gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * (1.0 - splatAlpha.r - splatAlpha.g);
+        #elif defined(CUSTOM_DETAIL_NUM4)
+        vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);
+        vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScale1);
+        vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScale2);
+        vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScale3);
+        vec4 color4 = texture2D(u_DiffuseTexture4, v_Texcoord0 * u_DiffuseScale4);
+        gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * splatAlpha.b + color4.xyz * (1.0 - splatAlpha.r - splatAlpha.g - splatAlpha.b);
+        #elif defined(CUSTOM_DETAIL_NUM5)
+        vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);
+        vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScale1);
+        vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScale2);
+        vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScale3);
+        vec4 color4 = texture2D(u_DiffuseTexture4, v_Texcoord0 * u_DiffuseScale4);
+        vec4 color5 = texture2D(u_DiffuseTexture5, v_Texcoord0 * u_DiffuseScale5);
+        gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * splatAlpha.b + color4.xyz * splatAlpha.a + color5.xyz * (1.0 - splatAlpha.r - splatAlpha.g - splatAlpha.b - splatAlpha.a);
+        #else
+        #endif
         }`;
-            var customShader = Laya.Shader3D.add("CustomShader");
+            var customTerrianShader = Laya.Shader3D.add("CustomTerrainShader");
             var subShader = new Laya.SubShader(attributeMap, uniformMap);
-            customShader.addSubShader(subShader);
+            customTerrianShader.addSubShader(subShader);
             subShader.addShaderPass(vs, ps);
         }
     }
+    new Shader_Terrain;
 
     class GameUI extends ui.test.TestSceneUI {
         constructor() {
             super();
-            new Shader_GlowingEdge();
+            new Shader_Terrain;
         }
     }
 

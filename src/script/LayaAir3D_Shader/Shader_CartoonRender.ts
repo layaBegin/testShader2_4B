@@ -1,6 +1,6 @@
 import CameraMoveScript from "./common/CameraMoveScript"
 import CartoonMaterial from "./customMaterials/cartoonMaterial"
-class Shader_CartoonRender {
+export default class Shader_CartoonRender {
 private kiana:Laya.Sprite3D;
     
     public constructor() {
@@ -18,7 +18,8 @@ private kiana:Laya.Sprite3D;
         Laya.Scene3D.load("res/threeDimen/cartoon/CartoonTest.ls", Laya.Handler.create(this, function(scene:Laya.Scene3D) {
             Laya.stage.addChild(scene);
             //获取场景相机
-            var camera = scene.getChildByName("Main Camera") as Laya.Camera;
+            //var camera = scene.getChildByName("Main Camera") as Laya.Camera;
+            var camera:Laya.Camera = (scene.addChild(new Laya.Camera(0, 0.1, 1000))) as Laya.Camera;
             camera.addComponent(CameraMoveScript);
             //添加光照
             var directionLight = scene.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
@@ -98,4 +99,4 @@ private kiana:Laya.Sprite3D;
     }
 }
 
-new Shader_CartoonRender;
+// new Shader_CartoonRender;

@@ -4,6 +4,8 @@ import CameraMoveScript from "./LayaAir3D_Shader/common/CameraMoveScript";
 import CustomMaterial1 from "./LayaAir3D_Shader/customMaterials/CustomMaterial1";
 import ShaderBox from "./LayaAir3D_Shader/ShaderBox";
 import Shader_GlowingEdge from "./LayaAir3D_Shader/Shader_GlowingEdge";
+import Shader_Terrain from "./LayaAir3D_Shader/Shader_Terrain";
+
 /**
  * 本示例采用非脚本的方式实现，而使用继承页面基类，实现页面逻辑。在IDE里面设置场景的Runtime属性即可和场景进行关联
  * 相比脚本方式，继承式页面类，可以直接使用页面定义的属性（通过IDE内var属性定义），比如this.tipLbll，this.scoreLbl，具有代码提示效果
@@ -39,7 +41,7 @@ export default class GameUI extends ui.test.TestSceneUI {
 
         //new Shader_Simple();
         //new ShaderBox();
-        new Shader_GlowingEdge();
-
+        // new Shader_GlowingEdge();
+        new Shader_Terrain;
     }
 }

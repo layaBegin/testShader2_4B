@@ -1,11 +1,12 @@
 {
-  "code": "import { ui } from \"./../ui/layaMaxUI\";\r\nimport Shader_GlowingEdge from \"./LayaAir3D_Shader/Shader_GlowingEdge\";\r\nexport default class GameUI extends ui.test.TestSceneUI {\r\n    constructor() {\r\n        super();\r\n        new Shader_GlowingEdge();\r\n    }\r\n}\r\n",
+  "code": "import { ui } from \"./../ui/layaMaxUI\";\r\nimport Shader_Terrain from \"./LayaAir3D_Shader/Shader_Terrain\";\r\nexport default class GameUI extends ui.test.TestSceneUI {\r\n    constructor() {\r\n        super();\r\n        new Shader_Terrain;\r\n    }\r\n}\r\n",
   "references": [
     "D:/layaTestProject/testShader2_4B/src/ui/layaMaxUI.ts",
     "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/Shader_Simple.ts",
     "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/common/CameraMoveScript.ts",
     "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/customMaterials/CustomMaterial1.ts",
     "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/ShaderBox.ts",
-    "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/Shader_GlowingEdge.ts"
+    "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/Shader_GlowingEdge.ts",
+    "D:/layaTestProject/testShader2_4B/src/script/LayaAir3D_Shader/Shader_Terrain.ts"
   ]
 }
