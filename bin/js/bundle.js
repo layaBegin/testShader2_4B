@@ -97,6 +97,7 @@
     class CustomMaterial extends Laya.Material {
         constructor() {
             super();
+            this.setShaderName("CustomShader");
         }
         get diffuseTexture() {
             return this._shaderValues.getTexture(CustomMaterial.DIFFUSETEXTURE);
@@ -126,38 +127,6 @@
             camera.addComponent(CameraMoveScript);
             var directionLight = scene.addChild(new Laya.DirectionLight());
             directionLight.color = new Laya.Vector3(1, 1, 1);
-            Laya.Sprite3D.load("res/threeDimen/skinModel/dude/dude.lh", Laya.Handler.create(this, function (dude) {
-                scene.addChild(dude);
-                var customMaterial1 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/head.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial1.diffuseTexture = tex;
-                }));
-                customMaterial1.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial2 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/jacket.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial2.diffuseTexture = tex;
-                }));
-                customMaterial2.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial3 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/pants.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial3.diffuseTexture = tex;
-                }));
-                customMaterial3.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var customMaterial4 = new CustomMaterial();
-                Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/upBodyC.png", Laya.Handler.create(this, function (tex) {
-                    customMaterial4.diffuseTexture = tex;
-                }));
-                customMaterial4.marginalColor = new Laya.Vector3(1, 0.7, 0);
-                var baseMaterials = new Array();
-                baseMaterials[0] = customMaterial1;
-                baseMaterials[1] = customMaterial2;
-                baseMaterials[2] = customMaterial3;
-                baseMaterials[3] = customMaterial4;
-                dude.getChildAt(0).getChildAt(0).skinnedMeshRenderer.sharedMaterials = baseMaterials;
-                dude.transform.position = new Laya.Vector3(0, 0.5, 0);
-                dude.transform.scale = new Laya.Vector3(0.2, 0.2, 0.2);
-                dude.transform.rotate(new Laya.Vector3(0, 180, 0), false, false);
-            }));
             var earth = scene.addChild(new Laya.MeshSprite3D(Laya.PrimitiveMesh.createSphere(0.5, 128, 128)));
             var customMaterial = new CustomMaterial();
             Laya.Texture2D.load("res/threeDimen/texture/earth.png", Laya.Handler.create(null, function (tex) {
@@ -206,29 +175,22 @@
         #endif
         void main()
         {
-        #ifdef BONE
-        mat4 skinTransform=mat4(0.0);
-        skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;
-        skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;
-        skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;
-        skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;
-        vec4 position = skinTransform * a_Position;
-        gl_Position=u_MvpMatrix * position;
-        mat3 worldMat=mat3(u_WorldMat * skinTransform);
-        #else
-        gl_Position=u_MvpMatrix * a_Position;
-        mat3 worldMat=mat3(u_WorldMat);
-        #endif
-        v_Texcoord=a_Texcoord;
-        v_Normal=worldMat*a_Normal;
-        #if defined(DIRECTIONLIGHT)
-        #ifdef BONE
-        v_PositionWorld=(u_WorldMat*position).xyz;
-        #else
-        v_PositionWorld=(u_WorldMat*a_Position).xyz;
-        #endif
-        #endif
-        gl_Position=remapGLPositionZ(gl_Position); 
+            #ifdef BONE
+            
+            #else
+            gl_Position=u_MvpMatrix * a_Position;
+            mat3 worldMat=mat3(u_WorldMat);
+            #endif
+            v_Texcoord=a_Texcoord;
+            v_Normal=worldMat*a_Normal;
+            #if defined(DIRECTIONLIGHT)
+            #ifdef BONE
+            v_PositionWorld=(u_WorldMat*position).xyz;
+            #else
+            v_PositionWorld=(u_WorldMat*a_Position).xyz;
+            #endif
+            #endif
+            gl_Position=remapGLPositionZ(gl_Position); 
         }`;
             var ps = `
         #ifdef FSHIGHPRECISION

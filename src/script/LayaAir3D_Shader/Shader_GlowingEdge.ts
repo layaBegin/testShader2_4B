@@ -23,54 +23,56 @@ export default class Shader_GlowingEdge {
         var directionLight:Laya.DirectionLight = scene.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
         directionLight.color = new Laya.Vector3(1, 1, 1);
         
-        //加载精灵
-        Laya.Sprite3D.load("res/threeDimen/skinModel/dude/dude.lh", Laya.Handler.create(this, function(dude:Laya.Sprite3D):void {
-            scene.addChild(dude);
+        // //加载精灵
+        // Laya.Sprite3D.load("res/threeDimen/skinModel/dude/dude.lh", Laya.Handler.create(this, function(dude:Laya.Sprite3D):void {
+        //     scene.addChild(dude);
             
-            //使用自定义材质
-            var customMaterial1:CustomMaterial = new CustomMaterial();
-            Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/head.png", Laya.Handler.create(this, function(tex:Laya.Texture2D):void {
-                customMaterial1.diffuseTexture = tex;
-            }));
-            customMaterial1.marginalColor = new Laya.Vector3(1, 0.7, 0);
+        //     //使用自定义材质
+        //     var customMaterial1:CustomMaterial = new CustomMaterial();
+        //     Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/head.png", Laya.Handler.create(this, function(tex:Laya.Texture2D):void {
+        //         customMaterial1.diffuseTexture = tex;
+        //     }));
+        //     customMaterial1.marginalColor = new Laya.Vector3(1, 0.7, 0);
             
-            var customMaterial2:CustomMaterial = new CustomMaterial();
-            Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/jacket.png", Laya.Handler.create(this, function(tex:Laya.Texture2D):void {
-                customMaterial2.diffuseTexture = tex;
-            }));
-            customMaterial2.marginalColor = new Laya.Vector3(1, 0.7, 0);
+        //     var customMaterial2:CustomMaterial = new CustomMaterial();
+        //     Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/jacket.png", Laya.Handler.create(this, function(tex:Laya.Texture2D):void {
+        //         customMaterial2.diffuseTexture = tex;
+        //     }));
+        //     customMaterial2.marginalColor = new Laya.Vector3(1, 0.7, 0);
             
-            var customMaterial3:CustomMaterial = new CustomMaterial();
-            Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/pants.png",Laya.Handler.create(this,function(tex:Laya.Texture2D):void{
-                customMaterial3.diffuseTexture = tex;
-            }));
-            customMaterial3.marginalColor = new Laya.Vector3(1, 0.7, 0);
+        //     var customMaterial3:CustomMaterial = new CustomMaterial();
+        //     Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/pants.png",Laya.Handler.create(this,function(tex:Laya.Texture2D):void{
+        //         customMaterial3.diffuseTexture = tex;
+        //     }));
+        //     customMaterial3.marginalColor = new Laya.Vector3(1, 0.7, 0);
             
-            var customMaterial4:CustomMaterial = new CustomMaterial();
-            Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/upBodyC.png",Laya.Handler.create(this,function(tex:Laya.Texture2D):void{
-                customMaterial4.diffuseTexture =tex ;
-            }));
+        //     var customMaterial4:CustomMaterial = new CustomMaterial();
+        //     Laya.Texture2D.load("res/threeDimen/skinModel/dude/Assets/dude/upBodyC.png",Laya.Handler.create(this,function(tex:Laya.Texture2D):void{
+        //         customMaterial4.diffuseTexture =tex ;
+        //     }));
            
-            //设置边缘颜色
-            customMaterial4.marginalColor = new Laya.Vector3(1, 0.7, 0);
+        //     //设置边缘颜色
+        //     customMaterial4.marginalColor = new Laya.Vector3(1, 0.7, 0);
             
-            var baseMaterials:Array<Laya.Material> = new Array<Laya.Material>();
-            baseMaterials[0] = customMaterial1;
-            baseMaterials[1] = customMaterial2;
-            baseMaterials[2] = customMaterial3;
-            baseMaterials[3] = customMaterial4;
+        //     var baseMaterials:Array<Laya.Material> = new Array<Laya.Material>();
+        //     baseMaterials[0] = customMaterial1;
+        //     baseMaterials[1] = customMaterial2;
+        //     baseMaterials[2] = customMaterial3;
+        //     baseMaterials[3] = customMaterial4;
             
-            (dude.getChildAt(0).getChildAt(0) as Laya.SkinnedMeshSprite3D).skinnedMeshRenderer.sharedMaterials = baseMaterials;
-            dude.transform.position = new Laya.Vector3(0, 0.5, 0);
-            dude.transform.scale = new Laya.Vector3(0.2, 0.2, 0.2);
-            dude.transform.rotate(new Laya.Vector3(0, 180, 0), false, false);
-        }));
+        //     (dude.getChildAt(0).getChildAt(0) as Laya.SkinnedMeshSprite3D).skinnedMeshRenderer.sharedMaterials = baseMaterials;
+        //     dude.transform.position = new Laya.Vector3(0, 0.5, 0);
+        //     dude.transform.scale = new Laya.Vector3(0.2, 0.2, 0.2);
+        //     dude.transform.rotate(new Laya.Vector3(0, 180, 0), false, false);
+        // }));
         
         //加载地球精灵
         var earth:Laya.MeshSprite3D = scene.addChild(new Laya.MeshSprite3D(Laya.PrimitiveMesh.createSphere(0.5, 128, 128))) as Laya.MeshSprite3D;
         
         var customMaterial:CustomMaterial = new CustomMaterial();
+        //var material: Laya.BlinnPhongMaterial = new Laya.BlinnPhongMaterial();
         Laya.Texture2D.load("res/threeDimen/texture/earth.png", Laya.Handler.create(null, function(tex:Laya.Texture2D):void{
+            //material.albedoTexture= tex;
             customMaterial.diffuseTexture = tex;
         }));
         customMaterial.marginalColor = new Laya.Vector3(0.0, 0.3, 1.0);
@@ -97,6 +99,20 @@ export default class Shader_GlowingEdge {
 			'u_marginalColor': Laya.Shader3D.PERIOD_MATERIAL, 
 			'u_SunLight.color': Laya.Shader3D.PERIOD_SCENE,
         };
+        /**
+         * mat4 skinTransform=mat4(0.0);
+            skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;
+            skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;
+            skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;
+            skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;
+            vec4 position = skinTransform * a_Position;
+            gl_Position=u_MvpMatrix * position;
+            mat3 worldMat=mat3(u_WorldMat * skinTransform);
+
+
+            
+         * 
+         */
         var vs:string = `
         #include "Lighting.glsl";
         attribute vec4 a_Position;
@@ -117,29 +133,22 @@ export default class Shader_GlowingEdge {
         #endif
         void main()
         {
-        #ifdef BONE
-        mat4 skinTransform=mat4(0.0);
-        skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;
-        skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;
-        skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;
-        skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;
-        vec4 position = skinTransform * a_Position;
-        gl_Position=u_MvpMatrix * position;
-        mat3 worldMat=mat3(u_WorldMat * skinTransform);
-        #else
-        gl_Position=u_MvpMatrix * a_Position;
-        mat3 worldMat=mat3(u_WorldMat);
-        #endif
-        v_Texcoord=a_Texcoord;
-        v_Normal=worldMat*a_Normal;
-        #if defined(DIRECTIONLIGHT)
-        #ifdef BONE
-        v_PositionWorld=(u_WorldMat*position).xyz;
-        #else
-        v_PositionWorld=(u_WorldMat*a_Position).xyz;
-        #endif
-        #endif
-        gl_Position=remapGLPositionZ(gl_Position); 
+            #ifdef BONE
+            
+            #else
+            gl_Position=u_MvpMatrix * a_Position;
+            mat3 worldMat=mat3(u_WorldMat);
+            #endif
+            v_Texcoord=a_Texcoord;
+            v_Normal=worldMat*a_Normal;
+            #if defined(DIRECTIONLIGHT)
+            #ifdef BONE
+            v_PositionWorld=(u_WorldMat*position).xyz;
+            #else
+            v_PositionWorld=(u_WorldMat*a_Position).xyz;
+            #endif
+            #endif
+            gl_Position=remapGLPositionZ(gl_Position); 
         }`;
         var ps:string = `
         #ifdef FSHIGHPRECISION
